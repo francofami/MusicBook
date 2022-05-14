@@ -1,25 +1,49 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import Registro from './components/Registro'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    lista : [] // Lista de registros en componente padre
+  }
+
+  // El padre le pasa al hijo
+  // Para que hijo pase a padre hay un truco:
+  // Mas abajo le paso la referencia de este método al hijo
+  // El hijo lo invoca y le pasa por parámetro el nuevo registro
+
+  agregarRegistro = (registro)=>{
+    this.setState({
+      lista: [...this.state.lista, registro]
+    })
+  }
+
+  removerRegistro = (id) => {
+    const listaActualizada = this.state.lista.filter((registro) => registro.id !== id);
+    this.setState({
+      lista:[]
+    })
+  }
+
+  render() {
+
+    return (
+      <>
+      <div>
+          <Header titulo="Registro"/>
+          <div className="container">
+            <div className="row">
+              <div className='one-half column'>
+                <Registro agregarRegistro = { this.agregarRegistro }/>
+              </div>
+            </div>
+          </div>
+      </div>
+      </>
+    );
+  }
 }
 
 export default App;

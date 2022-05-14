@@ -1,0 +1,18 @@
+export const GENEROS_MUSICALES = {
+    ROCK: "Rock",
+    POP: "Pop",
+    METAL: "Metal",
+    BLUES: "Blues",
+    JAZZ: "Jazz",
+    FOLK: "Folk",
+    RAP: "Rap",
+    HIPHOP: "Hip-Hop",
+    SOUL: "Soul",
+    PUNK: "Punk",
+    CUMBIA: "Cumbia",
+    REGUETON: "Regueton",
+    REGGAE: "Reggae",
+    COUNTRY: "Country",
+    OTRO: "Otro",
+    NINGUNO: "Ninguno",
+}
