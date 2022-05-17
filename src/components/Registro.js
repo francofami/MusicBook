@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import defaultProfilePicture from '../assets/images/pp.png'
 
 export default class Registro extends Component {
 
@@ -101,6 +102,7 @@ export default class Registro extends Component {
             } 
             <form onSubmit={this.handlerSubmit}>
                 <label htmlFor="fotoDePerfil">Foto de Perfil:</label>
+                <img src={ defaultProfilePicture }></img>
                 <input
                     type="file"
                     id='fotoDePerfil'
@@ -186,17 +188,39 @@ export default class Registro extends Component {
                     onChange={this.handlerChange}
                     value = {queInstrumentoTocas}
                 />
-                <label htmlFor="txtQueInstrumentoTocas">¿Estás buscando banda? *:</label>
-                <input
-                    type="radio"
-                    id='txtQueInstrumentoTocas'
-                    name='queInstrumentoTocas'
-                    placeholder='¿Estás buscando banda? *'
-                    autoComplete='off'
-                    className='u-full-width'
-                    onChange={this.handlerChange}
-                    value = {queInstrumentoTocas}
-                />
+
+
+                <div>
+                    ¿Estás buscando banda? * {this.state.selectedOption}
+                </div>
+                <div className="radio">
+                    <label>
+                        <input
+                        type="radio"
+                        value="Si"
+                        //checked={this.state.estasBuscandoBanda === "Si"}
+                        onChange={this.onValueChange}
+                        />
+                        Si
+                    </label>
+                </div>
+                <div className="radio">
+                    <label>
+                        <input
+                        type="radio"
+                        value="No"
+                        //checked={this.state.estasBuscandoBanda === "No"}
+                        //checked="checked"
+                        onChange={this.onValueChange}
+                        />
+                        No
+                    </label>
+                </div>
+                
+                
+
+
+
                 <label htmlFor="txtInfomracionAdicional">Información adicional:</label>
                 <textarea 
                     name="infomracionAdicional" 
@@ -206,7 +230,7 @@ export default class Registro extends Component {
                     value = {infomracionAdicional}>
                 </textarea>
             </form>
-            <button type="submit" class="button-primary u-full-width">Alta Registro</button>
+            <button type="submit" className="button-primary u-full-width">Alta Registro</button>
             </>
         );
     }    

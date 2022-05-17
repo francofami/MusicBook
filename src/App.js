@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header';
+import PruebaMapa from './components/PruebaMapa';
 import Registro from './components/Registro'; 
 
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
             <div className="row">
               <div className='one-half column'>
                 <Registro agregarRegistro = { this.agregarRegistro }/>
+                <PruebaMapa></PruebaMapa>
               </div>
             </div>
           </div>
