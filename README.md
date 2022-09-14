@@ -1,5 +1,17 @@
-# MusicBook
+# API Criptos + Login + ABM
 
-Red social exclusiva para músicos argentinos, donde van a poder conectarse entre sí para poder formar una banda.
+## Como utilizar
 
-Integrantes del grupo de trabajo: Franco Famiglietti e Ignacio Nahuel Boccasile.
+Dentro de la carpeta api:
+
+### `npm run dev`
+
+Levanta servidor escuchando en http://localhost:3000
+y conecta a base de datos MongoDB
+
+Dentro de la carpeta client:
+
+### `npm start`
+
+Levanta frontend con Login + ABM de Criptos
+en http://localhost:3001
