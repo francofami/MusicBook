@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', usersRouter);
-app.use('/api/router', musicoRouter);
+app.use('/api/musico', musicoRouter);
 app.use('/api/login', loginRouter);
 
 app.use(handlerNotFound);
