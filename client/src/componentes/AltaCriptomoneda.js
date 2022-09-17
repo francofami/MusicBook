@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import CriptomonedasService from '../servicios/criptomonedasService';
-import ToggleButton from 'react-bootstrap/ToggleButton'
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import BarraNavegacion from './BarraNavegacion';
 
 

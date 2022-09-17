@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 
@@ -12,13 +12,21 @@ const markerPosition = {
     lng: -58.3817277
 };
 
-function PruebaMapa() {
+const PruebaMapa = (props) => {
+
+  const { marcador, setMarcador } = props
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyBNJhIknwSU-3JCGv3vdZLardDpR1BoLCU"
   })
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = useState(null)
+  //const [marcador, setMarcador] = useState("")
+
+  const state  = {
+    marcador: marcador
+  };
 
   const onLoad = React.useCallback(function callback(map) {
     setMap(map)
@@ -33,13 +41,13 @@ function PruebaMapa() {
   }, [])
 
   const onDragEnd = e => {
-    console.log("Terminé de arrastrar marcador")
+
+    setMarcador(e)
+
   }
 
-  const onUnmountMarker = marker => {
-    console.log('El marcador quedó ubicado en: ', marker.position)
-    // Esto se deberia ejecutar cuando se cierre el componente, ahí podríamos tomar los valores de la posición
-    // Si esto no funciona, ver propiedad onMarkerComplete en DrawingManager  
+  const onUnmountMarker = e => {
+
   }
 
   return isLoaded ? (
@@ -65,4 +73,5 @@ function PruebaMapa() {
   ) : <></>
 }
 
-export default React.memo(PruebaMapa)
+//export default React.memo(PruebaMapa)
+export default PruebaMapa

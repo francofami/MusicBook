@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import RegistroService from "../servicios/registroService";
 import defaultProfilePicture from '../assets/img/pp.png';
 import PruebaMapa from './PruebaMapa';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
 const Registro = () => {
 
@@ -13,7 +14,7 @@ const Registro = () => {
     const [fotoDePerfil, setFotoDePerfil] = useState("")
     const [nombre, setNombre] = useState("")
     const [apellido, setApellido] = useState("")
-    const [ubicacion, setUbicacion] = useState("")
+    const [ubicacion, setUbicacion] = useState([])
     const [fechaDeNacimiento, setFechaDeNacimiento] = useState("")
     const [generoMusicalPreferido, setGeneroMusicalPreferido] = useState("")
     const [queInstrumentoTocas, setQueInstrumentoTocas] = useState("")
@@ -63,7 +64,18 @@ const Registro = () => {
     }
 
     const handlerUbicacion = (e) => {
-        setUbicacion(e.target.value);
+        
+        let { latLng } = e;
+        let lat = latLng.lat();
+        let lng = latLng.lng();
+        // console.log("Handler ubicacion: ", lat, lng)
+        console.log("Handler ubicacion: ", lat, lng)
+        setUbicacion([lat, lng]);
+    }
+
+    const handlerMarcador = (e) => {
+        // setMarcador(e.target.value);
+        console.log(e)
     }
 
     const handlerFechaDeNacimiento = (e) => {
@@ -79,7 +91,7 @@ const Registro = () => {
     }
 
     const handlerEstasBuscandoBanda = (e) => {
-        setEstasBuscandoBanda(e.target.value);
+        estasBuscandoBanda ? setEstasBuscandoBanda(false): setEstasBuscandoBanda(true);        
     }
 
     const handlerInformacionAdicional = (e) => {
@@ -239,32 +251,10 @@ const Registro = () => {
                                         <div>
                                             ¿Estás buscando banda? * {estasBuscandoBanda}
                                         </div>
-                                        <div className="radio">
-                                            <label>
-                                                <input
-                                                type="radio"
-                                                value="Si"
-                                                //checked={this.state.estasBuscandoBanda === "Si"}
-                                                onChange={handlerEstasBuscandoBanda}
-                                                />
-                                                Si
-                                            </label>
-                                        </div>
-                                        <div className="radio">
-                                            <label>
-                                                <input
-                                                type="radio"
-                                                value="No"
-                                                //checked={this.state.estasBuscandoBanda === "No"}
-                                                //checked="checked"
-                                                onChange={handlerEstasBuscandoBanda}
-                                                />
-                                                No
-                                            </label>
-                                        </div>
+                                        <ToggleButton onClick={handlerEstasBuscandoBanda}>{ estasBuscandoBanda ? 'Si' : 'No' }</ToggleButton>
                                         
                                         
-                                        <PruebaMapa></PruebaMapa>
+                                        <PruebaMapa setMarcador={handlerUbicacion}></PruebaMapa>
 
 
                                         <label htmlFor="txtInfomracionAdicional">Información adicional:</label>
