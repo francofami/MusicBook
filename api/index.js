@@ -9,7 +9,7 @@ const {
     logger,
 } = require('./utils/middleware');
 
-const criptomonedasRouter = require('./routes/criptomonedasRouter');
+const musicoRouter = require('./routes/musicoRouter');
 const usersRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', usersRouter);
-app.use('/api/criptomonedas', criptomonedasRouter);
+app.use('/api/router', musicoRouter);
 app.use('/api/login', loginRouter);
 
 app.use(handlerNotFound);

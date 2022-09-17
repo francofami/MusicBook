@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import RegistroService from "../servicios/registroService";
 import defaultProfilePicture from '../assets/img/pp.png';
-
+import PruebaMapa from './PruebaMapa';
 
 const Registro = () => {
 
@@ -264,7 +264,7 @@ const Registro = () => {
                                         </div>
                                         
                                         
-
+                                        <PruebaMapa></PruebaMapa>
 
 
                                         <label htmlFor="txtInfomracionAdicional">Información adicional:</label>
