@@ -1,4 +1,4 @@
-# API Criptos + Login + ABM
+# Musicbook
 
 ## Como utilizar
 
@@ -13,5 +13,5 @@ Dentro de la carpeta client:
 
 ### `npm start`
 
-Levanta frontend con Login + ABM de Criptos
+Levanta frontend de Musicbook
 en http://localhost:3001
