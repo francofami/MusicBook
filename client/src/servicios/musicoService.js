@@ -21,9 +21,9 @@ const altaMusico = (data) => {
         esRepresentante: data.esRepresentante.toString()
     }, 
     {
-        headers: {
+        /*headers: {
             'Authorization':'Bearer '+(localStorage.getItem("token")).toString()
-        }
+        }*/
     })
     .then((response => {
         return response.data;

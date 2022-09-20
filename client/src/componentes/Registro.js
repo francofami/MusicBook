@@ -5,11 +5,12 @@ import defaultProfilePicture from '../assets/img/pp.png';
 import PruebaMapa from './PruebaMapa';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
+
 const Registro = () => {
 
     const [email, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [passwordConfirm, setPasswordConfirm] = useState("")
+    const [contraseña, setContraseña] = useState("")
+    const [contraseñaConfirm, setContraseñaConfirm] = useState("")
 
     const [fotoDePerfil, setFotoDePerfil] = useState("")
     const [nombre, setNombre] = useState("")
@@ -17,15 +18,15 @@ const Registro = () => {
     const [ubicacion, setUbicacion] = useState([])
     const [fechaDeNacimiento, setFechaDeNacimiento] = useState("")
     const [generoMusicalPreferido, setGeneroMusicalPreferido] = useState("")
-    const [queInstrumentoTocas, setQueInstrumentoTocas] = useState("")
-    const [estasBuscandoBanda, setEstasBuscandoBanda] = useState("")
+    const [instrumento, setInstrumento] = useState("")
+    const [buscandoBanda, setBuscandoBanda] = useState("")
     const [informacionAdicional, setInformacionAdicional] = useState("")
 
     const navigate = useNavigate();
 
     const state  = {
         email: email,
-        password: password,
+        contraseña: contraseña,
 
         fotoDePerfil: fotoDePerfil,
         nombre: nombre,
@@ -33,9 +34,11 @@ const Registro = () => {
         ubicacion: ubicacion,
         fechaDeNacimiento: fechaDeNacimiento,
         generoMusicalPreferido: generoMusicalPreferido,
-        queInstrumentoTocas: queInstrumentoTocas,
-        estasBuscandoBanda: estasBuscandoBanda,
-        informacionAdicional: informacionAdicional
+        instrumento: instrumento,
+        buscandoBanda: buscandoBanda,
+        informacionAdicional: informacionAdicional,
+        bloqueado: false,
+        esRepresentante: false
     };
 
 
@@ -43,12 +46,12 @@ const Registro = () => {
         setUsername(e.target.value);
     }
 
-    const handlerPassword = (e) => {
-        setPassword(e.target.value);
+    const handlerContraseña = (e) => {
+        setContraseña(e.target.value);
     }
 
-    const handlerPasswordConfirm = (e) => {
-        setPasswordConfirm(e.target.value);
+    const handlerContraseñaConfirm = (e) => {
+        setContraseñaConfirm(e.target.value);
     }
 
     const handlerFotoDePerfil = (e) => {
@@ -73,11 +76,6 @@ const Registro = () => {
         setUbicacion([lat, lng]);
     }
 
-    const handlerMarcador = (e) => {
-        // setMarcador(e.target.value);
-        console.log(e)
-    }
-
     const handlerFechaDeNacimiento = (e) => {
         setFechaDeNacimiento(e.target.value);
     }
@@ -86,12 +84,12 @@ const Registro = () => {
         setGeneroMusicalPreferido(e.target.value);
     }
 
-    const handlerQueInstrumentoTocas = (e) => {
-        setQueInstrumentoTocas(e.target.value);
+    const handlerinstrumento = (e) => {
+        setInstrumento(e.target.value);
     }
 
-    const handlerEstasBuscandoBanda = (e) => {
-        estasBuscandoBanda ? setEstasBuscandoBanda(false): setEstasBuscandoBanda(true);        
+    const handlerbuscandoBanda = (e) => {
+        buscandoBanda ? setBuscandoBanda(false): setBuscandoBanda(true);        
     }
 
     const handlerInformacionAdicional = (e) => {
@@ -101,7 +99,7 @@ const Registro = () => {
     const crearUsuario = async (e) => {
         e.preventDefault();
 
-        if (state.password !== passwordConfirm) {
+        if (state.contraseña !== contraseñaConfirm) {
             alert("Las contraseñas no coinciden.");
         } else {
             try {
@@ -160,9 +158,9 @@ const Registro = () => {
                                             className="form-control"
                                             placeholder="Ingrese contraseña"
                                             style={{width: "80vh", height:"4vh", textAlign:"center", justifyContent:"center", alignItems: "center"}}
-                                            name="password"
-                                            value={password}
-                                            onChange={handlerPassword}
+                                            name="contraseña"
+                                            value={contraseña}
+                                            onChange={handlerContraseña}
                                         />
                                         </div>
 
@@ -173,13 +171,13 @@ const Registro = () => {
                                             className="form-control"
                                             placeholder="Reingrese contraseña"
                                             style={{width: "80vh", height:"4vh", textAlign:"center", justifyContent:"center", alignItems: "center"}}
-                                            name="passwordConfirm"
-                                            onChange={handlerPasswordConfirm}
+                                            name="contraseñaConfirm"
+                                            onChange={handlerContraseñaConfirm}
                                         />
                                         </div>
 
                                         <label htmlFor="fotoDePerfil">Foto de Perfil:</label>
-                                        <img src={ defaultProfilePicture }></img>
+                                        <img src={ fotoDePerfil }></img>
                                         <input
                                             type="file"
                                             id='fotoDePerfil'
@@ -235,23 +233,23 @@ const Registro = () => {
                                             onChange={handlerGeneroMusicalPreferido}
                                             value = {generoMusicalPreferido}
                                         />
-                                        <label htmlFor="txtQueInstrumentoTocas">¿Qué instrumento tocás? *:</label>
+                                        <label htmlFor="txtinstrumento">¿Qué instrumento tocás? *:</label>
                                         <input
                                             type="text"
-                                            id='txtQueInstrumentoTocas'
-                                            name='queInstrumentoTocas'
-                                            placeholder='Ingrese queInstrumentoTocas'
+                                            id='txtinstrumento'
+                                            name='instrumento'
+                                            placeholder='Ingrese instrumento'
                                             autoComplete='off'
                                             className='u-full-width'
-                                            onChange={handlerQueInstrumentoTocas}
-                                            value = {queInstrumentoTocas}
+                                            onChange={handlerinstrumento}
+                                            value = {instrumento}
                                         />
 
 
                                         <div>
-                                            ¿Estás buscando banda? * {estasBuscandoBanda}
+                                            ¿Estás buscando banda? * {buscandoBanda}
                                         </div>
-                                        <ToggleButton onClick={handlerEstasBuscandoBanda}>{ estasBuscandoBanda ? 'Si' : 'No' }</ToggleButton>
+                                        <ToggleButton onClick={handlerbuscandoBanda}>{ buscandoBanda ? 'Si' : 'No' }</ToggleButton>
                                         
                                         
                                         <PruebaMapa setMarcador={handlerUbicacion}></PruebaMapa>

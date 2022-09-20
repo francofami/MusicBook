@@ -35,6 +35,9 @@ musicoRouter.post('/', (req, res) => {
 
     const body = req.body;
 
+    console.log("MusicoRouter POST: ");
+    console.log(body);
+
     createMusico(body)
     .then((nuevaCriptomoneda) => {
         nuevaCriptomoneda 
