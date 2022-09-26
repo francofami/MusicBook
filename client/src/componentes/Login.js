@@ -73,7 +73,7 @@ const Login = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            placeholder="Ingrese nombre de usuario"
+                                            placeholder="Ingrese nombre"
                                             style={{width: "80vh", height:"4vh", textAlign:"center", justifyContent:"center", alignItems: "center"}}
                                             name="username"
                                             value={username}
