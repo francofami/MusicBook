@@ -10,7 +10,6 @@ const {
 } = require('./utils/middleware');
 
 const musicoRouter = require('./routes/musicoRouter');
-const usersRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 
 const app = express();
@@ -23,7 +22,6 @@ app.get('/', (req, res) => {
     res.send("<h1>Servidor Personas</h1>");
 });
 
-app.use('/api/users', usersRouter);
 app.use('/api/musico', musicoRouter);
 app.use('/api/login', loginRouter);
 
