@@ -8,7 +8,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 
 const Registro = () => {
 
-    const [email, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [contraseña, setContraseña] = useState("")
     const [contraseñaConfirm, setContraseñaConfirm] = useState("")
 
@@ -43,7 +43,7 @@ const Registro = () => {
 
 
     const handlerEmail = (e) => {
-        setUsername(e.target.value);
+        setEmail(e.target.value);
     }
 
     const handlerContraseña = (e) => {

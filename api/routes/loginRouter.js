@@ -1,39 +1,39 @@
 const loginRouter = require('express').Router();
-const User = require('../models/User');
+const Musico = require('../models/Musico');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const {SECRET} = require('../utils/config');
 
 loginRouter.post("/", async(req, res, next) => {    
     try {
-        const { username, password } = req.body;
+        const { email, contraseña } = req.body;
 
-        const user = await User.findOne({username});
+        const musico = await Musico.findOne({email});
 
-         if (user) {
-            if(!await bcrypt.compare(password, user.passwordHash)) {
+         if (musico) {
+            if(!await bcrypt.compare(contraseña, musico.contraseña)) {
                 return next({
                     name:"validationError", 
-                    message:"El password o el username son inválidos"
+                    message:"Contraseña incorrecta."
                 });
             }
          } else {
             return next({
                 name:"validationError", 
-                message:"El password o el username son inválidos"
+                message:"No existe usuario con dicho email."
             });
          }
 
-         const userToken = {
-            username: user.username,
-            id: user._id,
+         const musicoToken = {
+            email: musico.email,
+            id: musico._id,
          };
 
-         const token = await jwt.sign(userToken, SECRET, {expiresIn:'1000s'});
+         const token = await jwt.sign(musicoToken, SECRET, {expiresIn:'1000s'});
 
          res.status(200).json({
             token,
-            username,
+            email,
          })
 
 

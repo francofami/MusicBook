@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AltaCriptomoneda from './componentes/AltaCriptomoneda'
-import Criptomonedas from './componentes/Criptomonedas'
+import Home from './componentes/Home'
 import Login from './componentes/Login'
 import Registro from './componentes/Registro'
 
@@ -12,7 +12,7 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<Login/>} />
                     <Route exact path="/registro" element={<Registro/>} />
-                    <Route exact path="/criptomonedas" element={<Criptomonedas/>} />
+                    <Route exact path="/home" element={<Home/>} />
                     <Route exact path="/altaCriptomoneda" element={<AltaCriptomoneda/>} />
                     <Route path="*" element={
                         <div>

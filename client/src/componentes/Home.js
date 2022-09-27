@@ -7,7 +7,7 @@ import CriptomonedasService from '../servicios/criptomonedasService';
 import Modal from 'react-bootstrap/Modal';
 import ModificacionCriptomoneda from './ModificacionCriptomoneda';
 
-const Criptomonedas = () => {
+const Home = () => {
 
 
     const [busqueda, setBusqueda] = useState("")
@@ -75,15 +75,15 @@ const Criptomonedas = () => {
     <div>
         <BarraNavegacion></BarraNavegacion>
     </div>
-    <input value={busqueda} onChange={buscador} type='text' placeholder='Buscar criptomonedas...' className='form-control'/>
+    <input value={busqueda} onChange={buscador} type='text' placeholder='Buscar en MusicBook...' className='form-control'/>
     <table className='table table-dark table-hover mt-3'>
         <thead>
             <tr>
-                <th>Símbolo</th>
-                <th>Nombre</th>
-                <th>Año de lanzamiento</th>
-                <th>¿Es Stablecoin?</th>
-                <th>Acciones</th>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+                <th>d</th>
+                <th>e</th>
             </tr>
         </thead>
         <tbody>
@@ -143,4 +143,4 @@ const Criptomonedas = () => {
   )
 }
 
-export default Criptomonedas
+export default Home

@@ -13,9 +13,9 @@ const BarraNavegacion = () => {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                <Navbar.Brand href="/criptomonedas">Criptomonedas</Navbar.Brand>
+                <Navbar.Brand href="/home">MusicBook</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/altaCriptomoneda">Alta</Nav.Link>
+                    <Nav.Link href="/altaCriptomoneda">Menu</Nav.Link>
                     <Nav.Link className="justify-content-end" style={{ width: "100%" }} onClick={cerrarSesion} href="/">Cerrar sesión</Nav.Link>
                 </Nav>
                 </Container>

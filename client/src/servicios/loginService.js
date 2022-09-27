@@ -4,8 +4,8 @@ const getToken = (data) => {
 
     return axios
     .post(`http://localhost:3000/api/login`, {
-            username: data.username,
-            password: data.password  
+            email: data.email,
+            contraseña: data.contraseña  
     })
     .then((response => {
         return response.data;

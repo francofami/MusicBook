@@ -6,22 +6,22 @@ import logoMusicBook from '../assets/img/logoMusicBook.png';
 
 const Login = () => {
 
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
+    const [contraseña, setContraseña] = useState("")
 
     const navigate = useNavigate();
 
     const state  = {
-        username: username,
-        password: password,
+        email: email,
+        contraseña: contraseña,
     };
 
     const usrn = (e) => {
-        setUsername(e.target.value);
+        setEmail(e.target.value);
     }
 
     const psswd = (e) => {
-        setPassword(e.target.value);
+        setContraseña(e.target.value);
     }
 
     const obtenerToken = async (e) => {
@@ -31,7 +31,7 @@ const Login = () => {
             await LoginService.getToken(state).then(
               (res) => {
                 localStorage.setItem("token", res.token);
-                navigate("/criptomonedas");
+                navigate("/home");
               },
               (error) => {
                 alert(error.response.data.message)
@@ -71,12 +71,12 @@ const Login = () => {
                                         <label>Usuario</label>
                                         
                                         <input
-                                            type="text"
+                                            type="email"
                                             className="form-control"
-                                            placeholder="Ingrese nombre"
+                                            placeholder="Ingrese email"
                                             style={{width: "80vh", height:"4vh", textAlign:"center", justifyContent:"center", alignItems: "center"}}
-                                            name="username"
-                                            value={username}
+                                            name="email"
+                                            value={email}
                                             onChange={usrn}
                                         />
                                         
@@ -89,8 +89,8 @@ const Login = () => {
                                             className="form-control"
                                             placeholder="Ingrese contraseña"
                                             style={{width: "80vh", height:"4vh", textAlign:"center", justifyContent:"center", alignItems: "center"}}
-                                            name="password"
-                                            value={password}
+                                            name="contraseña"
+                                            value={contraseña}
                                             onChange={psswd}
                                         />
                                         </div>

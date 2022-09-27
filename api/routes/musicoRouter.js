@@ -1,6 +1,7 @@
 const musicoRouter = require('express').Router();
 const Musico = require('../models/Musico');
 const { verifyToken } = require('../utils/middleware');
+const bcrypt = require('bcrypt');
 
 //criptomonedasRouter.use(verifyToken);
 
@@ -31,19 +32,40 @@ musicoRouter.get('/:id', (req, res) => {
     })
 });
 
-musicoRouter.post('/', (req, res) => {
+musicoRouter.post('/', async(req, res, next) => {
+    try {
+        const body = req.body;
+        const saltRounds = 10;
+        let flagUsuarioExistente = false;
 
-    const body = req.body;
+        console.log("BODY: " + body)
 
-    console.log("MusicoRouter POST: ");
-    console.log(body);
+        await Musico.find({})
+        .then((musicos) => {
+            musicos.forEach(musico => {
+                if(musico.email == body.email) {
+                    flagUsuarioExistente = true;
+                }
+            });
+        })
 
-    createMusico(body)
-    .then((nuevaCriptomoneda) => {
-        nuevaCriptomoneda 
-        ? res.status(201).json(nuevaCriptomoneda).end()
-        :res.status(400).end();
-    });
+        if(body.contraseña.length < 6 || body.contraseña.length > 30) {
+            next({name:"validationError", message:"La contraseña debe tener entre 6 y 30 caracteres"});
+        } else if (flagUsuarioExistente) {
+            next({name:"validationError", message:"El usuario ya existe"});
+        } else {
+            body.contraseña = await bcrypt.hash(body.contraseña, saltRounds);
+
+            createMusico(body)
+            .then((nuevaCriptomoneda) => {
+                nuevaCriptomoneda 
+                ? res.status(201).json(nuevaCriptomoneda).end()
+                :res.status(400).end();
+            });
+        }
+    } catch (error) {
+        next(error);
+    }
 });
 
 musicoRouter.delete('/:id', (req, res) => {
